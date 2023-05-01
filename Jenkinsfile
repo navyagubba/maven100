@@ -1,3 +1,7 @@
+
+@Library("mylibrary")_
+node('built-in')
+
 {
     stage('contdownload')
     {
@@ -6,18 +10,5 @@
     stage('contbuild')
     {
         cicd.newMaven()
-    }
-    stage('contdeployment')
-    {
-        cicd.newDeploy("Scriptedpipelinewithsharedlibraries","172.31.12.240","testapp")
-    }
-    stage('conttesting')
-    {
-        cicd.newGit("FunctionalTesting")
-        cicd.executeSelenium("Scriptedpipelinewithsharedlibraries")
-    }
-    stage('contdelivery')
-    {
-        cicd.newDeploy("Scriptedpipelinewithsharedlibraries","172.31.1.52","prodapp")
     }
 }
